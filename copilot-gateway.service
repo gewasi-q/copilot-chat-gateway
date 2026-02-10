@@ -1,0 +1,16 @@
+[Unit]
+Description=Copilot OpenAI Gateway
+After=network.target
+
+[Service]
+WorkingDirectory=/root/tset
+EnvironmentFile=/root/tset/.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/root/tset/.venv/bin/python -m uvicorn gateway:app --host 0.0.0.0 --port 9000
+Restart=always
+RestartSec=3
+KillSignal=SIGINT
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target
